@@ -5,8 +5,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { StaticAnalyzer } from '@ai-code-guardian/core';
-import { ConfidenceScorer } from '@ai-code-guardian/core';
+import { StaticAnalyzer } from '@/lib/core/static-analyzer';
+import { ConfidenceScorer } from '@/lib/core/confidence-scorer';
 import { v4 as uuidv4 } from 'uuid';
 
 const analyzer = new StaticAnalyzer();
