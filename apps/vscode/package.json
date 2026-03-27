@@ -1,0 +1,107 @@
+{
+  "name": "ai-code-guardian",
+  "displayName": "AI Code Guardian",
+  "description": "AI-powered code review, security analysis, and hallucination detection directly in VS Code",
+  "version": "1.0.0",
+  "publisher": "ai-code-guardian",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Linters", "Testing", "Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "icon": "icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "guardian.reviewFile",
+        "title": "Guardian: Review Current File",
+        "category": "AI Code Guardian"
+      },
+      {
+        "command": "guardian.reviewWorkspace",
+        "title": "Guardian: Review All Changed Files",
+        "category": "AI Code Guardian"
+      },
+      {
+        "command": "guardian.fixIssue",
+        "title": "Guardian: Auto-Fix Issue",
+        "category": "AI Code Guardian"
+      },
+      {
+        "command": "guardian.showDashboard",
+        "title": "Guardian: Open Dashboard",
+        "category": "AI Code Guardian"
+      }
+    ],
+    "configuration": {
+      "title": "AI Code Guardian",
+      "properties": {
+        "guardian.aiProvider": {
+          "type": "string",
+          "enum": ["gemini", "anthropic"],
+          "default": "gemini",
+          "description": "AI provider for code analysis"
+        },
+        "guardian.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Google Gemini API key"
+        },
+        "guardian.anthropicApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Anthropic Claude API key"
+        },
+        "guardian.autoReview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically review files on save"
+        },
+        "guardian.severityThreshold": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "info"],
+          "default": "low",
+          "description": "Minimum severity to display"
+        },
+        "guardian.dashboardUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "URL of the Guardian dashboard"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "guardian",
+          "title": "AI Code Guardian",
+          "icon": "$(shield)"
+        }
+      ]
+    },
+    "views": {
+      "guardian": [
+        {
+          "id": "guardian.issues",
+          "name": "Issues"
+        },
+        {
+          "id": "guardian.score",
+          "name": "Confidence Score"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "@ai-code-guardian/core": "*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

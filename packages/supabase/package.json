@@ -1,0 +1,20 @@
+{
+  "name": "@ai-code-guardian/supabase",
+  "version": "1.0.0",
+  "description": "Supabase database layer for AI Code Guardian",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "migrate": "echo 'Run migrations via Supabase CLI'"
+  },
+  "dependencies": {
+    "@ai-code-guardian/core": "*",
+    "@supabase/supabase-js": "^2.47.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}
